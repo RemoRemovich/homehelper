@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Welcome to <?echo $site_name; ?></title>
+	<title><?php echo $site_name; ?></title>
 		
 	<!-- Bootsrap: -->
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -48,8 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 		div#main_text {
-			float: left;
-		}
+		/*	float: left;*/
+		} 
 
 		div.footer {
 			clear: both;
@@ -61,11 +61,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="container" id="container">
 		<div class="row">
-			<div class="col-md-12"><h1><?php echo $site_name; ?></h1></div>
+			<div class="col-sm-12"><h1><?php echo $site_name; ?></h1></div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-12" id="menu">
+			<div class="col-sm-12" id="menu">
 				<ul class="horizontal">
 					<li>Item 1</li>
 					<li>Item 2</li>
@@ -78,8 +78,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<div class="row">
 			<div id="main_text" class="col-sm-12">
-				<h3>Описание системы</h3>
-				<p>Система <?php echo $site_name; ?> предназначена для совершения покупок по самым низким ценам в вашем городе.</p>
+
+				<h2>Описание системы</h2>
+				
+				Система <?php echo $site_name; ?> предназначена для совершения покупок по самым низким ценам в вашем городе.
+
+				<form action="/user/login" method="post">					
+					<?php if (isset($_GET['msg'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
+					<input type="hidden" name="login" placeholder="Email" value="anonymous@anonymous.com"><br>
+					<input type="hidden" name="password" placeholder="Пароль" value="anonymous"><br>
+					<input type="submit" name="submit" value="Воспользоваться без регистрации">
+				</form>
 			</div>
 		</div>	
 
@@ -94,13 +103,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</form>
 				<p><a href='/User/forgot_password' target="_self">Забыли пароль?</a></p>
 			</div>
-			<div id="login_form" class="col-sm-6">
+			<div id="reg_form" class="col-sm-6">
 				<h3>Регистрация</h3>
 				<form method="post" action="/User/register">
 					<?php if (isset($_GET['msg_for_user_reg_form'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
-					<input type="text" name="login" placeholder="Email" value="borismednikov@gmail.com"><br>
-					<input type="password" name="password" placeholder="Пароль" value="8767"><br>
-					<input type="submit" name="submit" value="Войти в систему">
+					<input type="text" name="login" placeholder="Email" value=""><br>
+					<input type="password" name="password" placeholder="Пароль" value=""><br>
+					<input type="password" name="password" placeholder="Подтверждение пароля" value=""><br>
+					<input type="submit" name="submit" value="Зарегистрироваться">
 				</form>
 			</div>
 		</div>
