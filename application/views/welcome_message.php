@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title><?php echo $site_name; ?></title>
 		
 	<!-- Bootsrap: -->
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
 	
 	<!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- Warning: respond.js doesn't work if you view the page via file:// -->
@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<![endif]-->
 
 	<!-- Optional theme for bootstrap: -->
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	<!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">-->
 	
 	
 	<style type="text/css">
@@ -81,14 +81,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<h2>Описание системы</h2>
 				
-				Система <?php echo $site_name; ?> предназначена для совершения покупок по самым низким ценам в вашем городе.
+				<p>Система <?php echo $site_name; ?> предназначена для совершения покупок по самым низким ценам в вашем городе.</p>
 
 				<form action="/user/login" method="post">					
 					<?php if (isset($_GET['msg'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
-					<input type="hidden" name="login" placeholder="Email" value="anonymous@anonymous.com"><br>
-					<input type="hidden" name="password" placeholder="Пароль" value="anonymous"><br>
+					<input type="hidden" name="login" placeholder="Email" value="anonymous@anonymous.com">
+					<input type="hidden" name="password" placeholder="Пароль" value="anonymous">
 					<input type="submit" name="submit" value="Воспользоваться без регистрации">
 				</form>
+
+				<p>&nbsp;</p>
 			</div>
 		</div>	
 
@@ -97,8 +99,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h3>Вход в систему</h3>
 				<form method="post" action="/User/login">
 					<?php if (isset($_GET['msg'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
-					<input type="text" name="login" placeholder="Email" value="borismednikov@gmail.com"><br>
-					<input type="password" name="password" placeholder="Пароль" value="8767"><br>
+					<input type="text" name="login" size="33" placeholder="Email" value="borismednikov@gmail.com"><br>
+					<input type="password" name="password" size="33" placeholder="Пароль" value="8767"><br>
 					<input type="submit" name="submit" value="Войти в систему">
 				</form>
 				<p><a href='/User/forgot_password' target="_self">Забыли пароль?</a></p>
@@ -107,9 +109,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h3>Регистрация</h3>
 				<form method="post" action="/User/register">
 					<?php if (isset($_GET['msg_for_user_reg_form'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
-					<input type="text" name="login" placeholder="Email" value=""><br>
-					<input type="password" name="password" placeholder="Пароль" value=""><br>
-					<input type="password" name="password" placeholder="Подтверждение пароля" value=""><br>
+					<input type="text" name="login" size="33" placeholder="Email" value=""><br>
+					<input type="password" name="password" size="33" placeholder="Пароль" value=""><br>
+					<input type="password" name="password" size="33" placeholder="Подтверждение пароля" value=""><br>
 					<input type="submit" name="submit" value="Зарегистрироваться">
 				</form>
 			</div>
@@ -127,7 +129,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include inidividual files as needed -->
 	<!-- latest JS: -->
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js">"></script>
+	<!--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js">"></script>-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 
 </body>
 </html>
