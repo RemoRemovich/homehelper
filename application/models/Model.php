@@ -30,33 +30,34 @@ class Model extends CI_Model {
 		#$this->load->view('welcome_message', $data);
 	}
 
-	public function try_login_user($ul, $up)
+	public function find_user($ul, $up)
 	{
-		$r = $this->db->query("SELECT * FROM users WHERE email = '".$ul."' AND password = '".$up."' AND active = 'Y' ");
-		if ($r->num_rows())	{
+		$query = "SELECT id FROM users WHERE email = '".$ul."' AND password = '".$up."' AND active = 'Y' ";
+		#echo "query = ___".$query."___\n<br>";
+
+		$r = $this->db->query($query);
+		 
+		if ($r->num_rows()){
 			$row = $r->row_array();
-			return $row;			
+			return $row['id'];
 		} else {
-			return NULL;
+			return 0;
 		}
 	}
 
-	public function getUserInfo($id)
+	public function getUserById($id)
 	{
 		$r = $this->db->query("SELECT * FROM users WHERE id = '".$id."' ");
 		if ($r->num_rows())	{
-			$row = $r->row_array();
-			return $row;			
+			return $r->row_array();
 		} else {
-			return NULL;
+			return array('name' => 'Anonymous', 'id' => 0);
 		}
 	}
 
-	public function search_goods($search_query)
+	public function getGoodsByNames($search_query)
 	{
 		$goods_names = explode(' ', $search_query);
-
-		#echo "goods_names = ".var_dump($goods_names)."<br>";
 
 		$list = '';
 
@@ -69,8 +70,7 @@ class Model extends CI_Model {
 		$r = $this->db->query($q);
 
 		if ($r->num_rows()) {
-			$result = $r->result_array();
-			return $result;
+			return $r->result_array();
 		} else {
 			return NULL;
 		}

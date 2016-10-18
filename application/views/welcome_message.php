@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title><?php echo $site_name; ?></title>
+	<link rel="stylesheet" type="text/css" href="/styles.css">
 		
 	<!-- Bootsrap: -->
 	<!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
@@ -23,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	
 	<style type="text/css">
-		html {
+/*		html {
 		  -webkit-box-sizing: border-box;
 		  -moz-box-sizing: border-box;
 		  box-sizing: border-box;
@@ -33,11 +34,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			background: #f5f5f5;
 		}
 
-	/*	div {
+*/	/*	div {
 			border: 1px solid black;
 		}
 	*/
-		#menu {			
+/*		#menu {			
 			background: #325da7;
 			color: #fff;
 		}
@@ -54,8 +55,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 
 		div#main_text {
-		/*	float: left;*/
-		} 
+	*/	/*	float: left;*/
+	/*	} 
 
 		form input, select, textarea, select {
 			margin: 2px 0;
@@ -67,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		div.footer {
 			clear: both;
-		}
+		} */
 	</style>
 </head>
 
@@ -97,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 				<p>Система <?php echo $site_name; ?> предназначена для помощи в совершении покупок по самым низким ценам в вашем городе.</p>
 
-				<form action="/user/login" method="post">					
+				<form action="/user/auth" method="post">					
 					<?php if (isset($_GET['msg'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
 					<input type="hidden" name="login" placeholder="Email" value="anonymous@anonymous.com">
 					<input type="hidden" name="password" placeholder="Пароль" value="anonymous">
@@ -111,7 +112,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row" id="body">
 			<div id="login_form" class="col-sm-6">
 				<h3>Вход в систему</h3>
-				<form method="post" action="/User/login">
+				<form method="post" action="/user/auth">
 					<?php if (isset($_GET['msg'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
 					<input type="text" name="login" size="33" placeholder="Email" value="borismednikov@gmail.com"><br>
 					<input type="password" name="password" size="33" placeholder="Пароль" value="8767"><br>
@@ -121,7 +122,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div id="reg_form" class="col-sm-6">
 				<h3>Регистрация</h3>
-				<form method="post" action="/User/register">
+				<form method="post" action="/user/register">
 					<?php if (isset($_GET['msg_for_user_reg_form'])) { echo "<p style='color: red;'>".$_GET['msg']."</p>"; } ?>
 					<input type="text" name="login" size="33" placeholder="Email" value=""><br>
 					<input type="password" name="password" size="33" placeholder="Пароль" value=""><br>
@@ -147,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<!-- Bootstrap 4.0-alpha-4 CSS files: -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-
+	
 	<!-- Bootstrap 4.0-alpha-4 JS files: -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
 

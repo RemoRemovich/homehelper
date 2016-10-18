@@ -29,52 +29,51 @@ class User extends CI_Controller {
 		#$this->load->view('welcome_message', $data);
 	}
 
-	public function login()
+	public function auth()
 	{
 		if (isset($_POST['submit'])) {
 
 			$ul = $_POST['login'];
 			$up = $_POST['password'];
 
-			$r = $this->model->try_login_user($ul, $up);
+			#echo "ul = $ul , up = $up|||\n<br>";
 
-			$userinfo = $this->model->getUserInfo($r['id']);
+			$uid = $this->model->find_user($ul, $up);
+		
+		#echo "uid = $uid\n";
+		#exit();
 
-			#echo "r = ".var_dump($r)."<br>";
-
-			if ($r == NULL) {
-				$msg = 'User not found!';
-				header("Location: http://".$_SERVER['SERVER_NAME']."/Welcome?msg=$msg");
-				#redirect('/Welcome', 'location', 301);
+			if ($uid == 0) {
+				header("Location: http://".$_SERVER['SERVER_NAME']."/Welcome?msg=User not found!");
 			} else {
-				$data['user'] = $userinfo;
-				set_cookie('userid', $userinfo['id']);
-				$data['site_name'] = "Price Sonar";
-				$data['page_name'] = "User dashboard";
-				$this->load->view('user_dashboard_v', $data);
+				#set_cookie('userid', $userinfo['id']);
+				$this->show_user_dashboard($uid);
 			}
 		}		
 	}
 
-	public function dashboard()
+	public function show_user_dashboard($uid)
 	{
 		$data['site_name'] = "Price Sonar";
 		$data['page_name'] = "User dashboard";
 
-		if (isset($_POST['userid'])) {
-		
-			$data['user'] = $this->model->getUserInfo($_POST['userid']);
-		
-			$goods = $this->model->search_goods($_POST['search_query']);
-
-			if ($goods !== NULL) {
-				$data['goods'] = $goods;
-			} 
-
-			#$data['user_prices'] = 'user_prices';
-				
-			$this->load->view('user_dashboard_v', $data);
+		if (!isset($uid) || $uid === NULL) {
+			$uid = 0;
 		}
+
+		$data['user'] = $this->model->getUserById($uid);
+		#echo "user data for user dashboard: ".$data['user']."|||\n<br>";
+		#exit();
+	
+		if (isset($_POST['search_query'])) {
+			$goods = $this->model->getGoodsByNames($_POST['search_query']);
+		} else {
+			$goods = $this->model->getAllGoods();
+		}
+
+		$data['goods'] = $goods;
+						
+		$this->load->view('user_dashboard_v', $data);		
 	}
 
 	public function edit($item)
@@ -90,7 +89,7 @@ class User extends CI_Controller {
 			$userid = get_cookie('userid');
 		}
 
-		echo "userID = $userid<br>";
+		//echo "userID = $userid<br>";
 
 		$data['user'] = $this->model->getUserInfo($userid);
 
