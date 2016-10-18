@@ -46,24 +46,25 @@ class User extends CI_Controller {
 			if ($uid == 0) {
 				header("Location: http://".$_SERVER['SERVER_NAME']."/Welcome?msg=User not found!");
 			} else {
-				#set_cookie('userid', $userinfo['id']);
-				$this->show_user_dashboard($uid);
+				$this->session->set_userdata(array('userid' => $uid));
+				header("Location: http://".$_SERVER['SERVER_NAME']."/user/show_user_dashboard");
 			}
 		}		
 	}
 
-	public function show_user_dashboard($uid)
+	public function show_user_dashboard()
 	{
 		$data['site_name'] = "Price Sonar";
 		$data['page_name'] = "User dashboard";
+
+		$uid = $this->session->userid;
+		#echo "uid = $uid<br>\n<br>";
 
 		if (!isset($uid) || $uid === NULL) {
 			$uid = 0;
 		}
 
 		$data['user'] = $this->model->getUserById($uid);
-		#echo "user data for user dashboard: ".$data['user']."|||\n<br>";
-		#exit();
 	
 		if (isset($_POST['search_query'])) {
 			$goods = $this->model->getGoodsByNames($_POST['search_query']);
@@ -117,5 +118,12 @@ class User extends CI_Controller {
 	
 		$this->load->view('user_dashboard_v', $data);
 		
+	}
+
+	public function logout()
+	{
+		$uid = $this->session->userid;
+		session_destroy();
+		header("Location: http://".$_SERVER['SERVER_NAME']."/welcome");
 	}
 }

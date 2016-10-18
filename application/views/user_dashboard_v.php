@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<h1>User dashboard</h1>
 
 			<div id="userid"> <!--style="border-bottom: 1px solid black;"-->
-				<?php echo $user['name']; ?> (<a href="/Welcome" target="_self">Log out</a>)
+				<?php echo $user['name']; ?> (<a href="/user/logout" target="_self">Log out</a>)
 				<br>
 			</div>
 		</div>
