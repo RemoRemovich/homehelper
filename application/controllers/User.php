@@ -92,7 +92,7 @@ class User extends CI_Controller {
 
 		//echo "userID = $userid<br>";
 
-		$data['user'] = $this->model->getUserInfo($userid);
+		$data['user'] = $this->model->getUserById($userid);
 
 		switch ($item) {
 				case 'products':
