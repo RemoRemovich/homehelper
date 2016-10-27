@@ -40,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<div id="main" class="col-sm-10">
 			<?php 
+				echo "page name is $page_name<br>\n";
 				switch ($page_name) {
 					case 'User dashboard':
 						require('user_prices_v.php');
@@ -47,6 +48,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 					case 'Products':
 						require('user_products_v.php');
+						break;
+
+					case 'Shops':
+						require('user_shops_v.php');
 						break;
 					
 					default:
